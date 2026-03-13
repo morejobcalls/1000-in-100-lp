@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Step 2: Schedule Your Growth Session | Season Proof Growth</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --brand: #E8500A;
+    --brand-dark: #c43e06;
+    --brand-glow: rgba(232, 80, 10, 0.22);
+    --ink: #0D0D0D;
+    --paper: #F7F4EF;
+    --paper-2: #EDE9E2;
+    --muted: #6B6460;
+    --border: rgba(13,13,13,0.11);
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .bebas {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── LOGO BAR ─────────────────────────────────── */
+  .logo-bar {
+    background: var(--ink);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+  }
+  .logo-text span { color: var(--brand); }
+
+  /* ── CONFIRMATION BANNER ──────────────────────── */
+  .confirm-banner {
+    background: var(--brand);
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .confirm-banner span { opacity: 0.8; font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: 8px; }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 60% at 20% 50%, rgba(232,80,10,0.10) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 50% at 85% 15%, rgba(232,80,10,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 60px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+  @media(max-width: 920px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px 56px; }
+  }
+
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,80,10,0.15);
+    border: 1px solid rgba(232,80,10,0.35);
+    color: var(--brand);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .step-badge::before {
+    content: '✓';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+    line-height: 0.95;
+    color: var(--white);
+    margin: 0 0 20px;
+  }
+  .hero h1 em { font-style: normal; color: var(--brand); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: rgba(247,244,239,0.7);
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+
+  .hero-body {
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: rgba(247,244,239,0.6);
+    max-width: 500px;
+    margin-bottom: 28px;
+    border-left: 3px solid var(--brand);
+    padding-left: 16px;
+  }
+
+  .call-bullets-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 14px;
+  }
+
+  .call-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .call-bullets li {
+    display: flex;
+    gap: 11px;
+    align-items: flex-start;
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: rgba(247,244,239,0.85);
+  }
+  .call-bullets li::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    background: var(--brand);
+    border-radius: 50%;
+    margin-top: 7px;
+  }
+
+  /* ── CALENDAR CARD ────────────────────────────── */
+  .cal-card {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 10px 48px rgba(0,0,0,0.38), 0 2px 8px rgba(0,0,0,0.18);
+    border-top: 4px solid var(--brand);
+  }
+  .cal-card h3 {
+    font-size: 1.45rem;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .cal-card .cal-sub {
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+
+  /* Calendar placeholder — replace src with Calendly/Cal.com embed */
+  .cal-embed {
+    width: 100%;
+    min-height: 520px;
+    border: none;
+    border-radius: 4px;
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    border: 1.5px dashed rgba(13,13,13,0.15);
+  }
+  .cal-embed-icon { font-size: 2.2rem; }
+  .cal-embed-note { font-size: 0.78rem; opacity: 0.6; text-align: center; max-width: 220px; }
+
+  .cal-footnote {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  /* ── SECTION ──────────────────────────────────── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 40px;
+  }
+  @media(max-width: 700px) { .section { padding: 52px 20px; } }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 10px;
+  }
+  .section-headline {
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    line-height: 1;
+    margin: 0 0 36px;
+  }
+
+  /* ── FIT SECTION ──────────────────────────────── */
+  .fit-section { background: var(--paper-2); }
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media(max-width: 680px) { .fit-grid { grid-template-columns: 1fr; } }
+
+  .fit-col {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 28px;
+    border-top: 4px solid transparent;
+  }
+  .fit-col.yes { border-top-color: var(--brand); }
+  .fit-col.no  { border-top-color: rgba(13,13,13,0.15); }
+
+  .fit-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
+  }
+  .fit-col.yes .fit-label { color: var(--brand); }
+  .fit-col.no  .fit-label { color: var(--muted); }
+
+  .fit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .fit-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink);
+    align-items: flex-start;
+  }
+  .fit-icon {
+    width: 19px;
+    height: 19px;
+    min-width: 19px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .fit-icon.check { background: var(--brand); color: var(--white); }
+  .fit-icon.x     { background: rgba(13,13,13,0.1); color: var(--muted); }
+
+  /* ── PROOF BAR ────────────────────────────────── */
+  .proof-section { background: var(--ink); }
+  .proof-section .section-headline { color: var(--white); }
+  .proof-section .section-eyebrow { color: var(--brand); }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(247,244,239,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  @media(max-width: 680px) { .proof-grid { grid-template-columns: 1fr; } }
+
+  .proof-card {
+    background: rgba(247,244,239,0.03);
+    padding: 30px 26px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .proof-card:hover {
+    background: rgba(232,80,10,0.06);
+    border-left-color: var(--brand);
+  }
+  .proof-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--brand);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .proof-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(247,244,239,0.75);
+  }
+  .proof-text strong { color: var(--white); }
+
+  /* ── WHAT HAPPENS NEXT ────────────────────────── */
+  .next-section { background: var(--paper); }
+  .next-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 720px;
+  }
+  .next-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .next-step:last-child { border-bottom: none; }
+  .next-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: rgba(232,80,10,0.2);
+    min-width: 48px;
+  }
+  .next-content h4 {
+    font-size: 1.15rem;
+    margin: 0 0 5px;
+    color: var(--ink);
+  }
+  .next-content p {
+    font-size: 0.93rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0;
+  }
+  .next-content p em {
+    font-style: normal;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .no-show-note {
+    margin-top: 28px;
+    background: rgba(232,80,10,0.07);
+    border-left: 3px solid var(--brand);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 720px;
+  }
+
+  /* ── BOTTOM CAL NUDGE ─────────────────────────── */
+  .bottom-cal { background: var(--ink); }
+  .bottom-cal-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 72px 40px;
+    text-align: center;
+  }
+  .bottom-cal-inner h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--white);
+    margin: 0 0 12px;
+  }
+  .bottom-cal-inner p {
+    font-size: 0.95rem;
+    color: rgba(247,244,239,0.55);
+    line-height: 1.65;
+    margin: 0 0 32px;
+  }
+
+  .bottom-cal-embed {
+    background: rgba(247,244,239,0.03);
+    border: 1.5px dashed rgba(247,244,239,0.12);
+    border-radius: 4px;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    color: rgba(247,244,239,0.3);
+    font-size: 0.88rem;
+  }
+  .bottom-cal-embed-icon { font-size: 2rem; }
+
+  .scarcity-note {
+    margin-top: 20px;
+    font-size: 0.82rem;
+    color: rgba(247,244,239,0.35);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(247,244,239,0.07);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 0.78rem;
+    color: rgba(247,244,239,0.28);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── ANIMATIONS ───────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fu  { animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+  .fu2 { animation: fadeUp 0.5s 0.08s cubic-bezier(0.22,1,0.36,1) both; }
+  .fu3 { animation: fadeUp 0.5s 0.16s cubic-bezier(0.22,1,0.36,1) both; }
+  .fu4 { animation: fadeUp 0.5s 0.24s cubic-bezier(0.22,1,0.36,1) both; }
+</style>
+</head>
+<body>
+
+<!-- ── LOGO BAR ── -->
+<header class="logo-bar">
+  <div class="logo-text">Season<span>Proof</span> Growth</div>
+</header>
+
+<!-- ── CONFIRMATION BANNER ── -->
+<div class="confirm-banner">
+  ✓ Application Received
+  <span>You're one step away — lock in your strategy call below.</span>
+</div>
+
+<!-- ── HERO + CALENDAR ── -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- LEFT -->
+    <div>
+      <div class="step-badge fu">Application Received — Step 2 of 2</div>
+      <h1 class="fu2">
+        Step 2: Schedule Your<br><em>1,000‑in‑100</em><br>Growth Session
+      </h1>
+      <p class="hero-sub fu3">
+        We've received your application. If your market and capacity are a fit, this call is where we map out how a 1,000‑appointments‑in‑100‑days system would actually work in your business.
+      </p>
+      <p class="hero-body fu3">
+        On this call, we'll walk through your numbers, your market, and your install/sales capacity to see if it makes sense to install our system in your business. If it doesn't, we'll tell you straight. If it does, you'll leave with a clear, math‑based plan to dominate your market.
+      </p>
+      <div class="call-bullets-label fu4">On this call, we will:</div>
+      <ul class="call-bullets fu4">
+        <li>Review your current pipeline, close rates, and crew capacity.</li>
+        <li>Show what 100–1,000 exclusive appointments in 100 days would look like for you.</li>
+        <li>Outline the traffic, funnel, and follow‑up system we'd install in your accounts.</li>
+        <li>Decide together whether partnering makes sense right now.</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: Calendar -->
+    <div class="fu3">
+      <div class="cal-card">
+        <h3 class="bebas">Pick a Time for Your Session</h3>
+        <p class="cal-sub">30-minute strategy call. Choose a time when you can be in front of a computer and fully focused.</p>
+
+        <!-- 
+          ══════════════════════════════════════════
+          CALENDAR EMBED — replace the div below
+          with your Calendly or Cal.com embed code.
+
+          Calendly example:
+          <div class="calendly-inline-widget"
+            data-url="https://calendly.com/YOUR_LINK"
+            style="min-width:320px;height:520px;">
+          </div>
+          <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+          Cal.com example:
+          <iframe src="https://cal.com/YOUR_LINK/30min?embed=true"
+            width="100%" height="520" frameborder="0"></iframe>
+          ══════════════════════════════════════════
+        -->
+        <div class="cal-embed">
+          <div class="cal-embed-icon">📅</div>
+          <strong>Paste your calendar embed here</strong>
+          <div class="cal-embed-note">Replace this block with your Calendly or Cal.com embed code</div>
+        </div>
+
+        <p class="cal-footnote">Please choose a time when you can be in front of a computer and focused for 30 minutes.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHO THIS CALL IS FOR ── -->
+<section class="fit-section">
+  <div class="section">
+    <p class="section-eyebrow">Qualification</p>
+    <h2 class="section-headline">Who This Call Is For</h2>
+    <div class="fit-grid">
+      <div class="fit-col yes">
+        <div class="fit-label">✓ This call IS for you if:</div>
+        <ul class="fit-list">
+          <li><span class="fit-icon check">✓</span>You're doing roughly $3M–$10M+ per year in outdoor living / decking.</li>
+          <li><span class="fit-icon check">✓</span>You have at least one crew free or can add capacity quickly.</li>
+          <li><span class="fit-icon check">✓</span>You or your sales team can run 10–20+ new appointments per week.</li>
+          <li><span class="fit-icon check">✓</span>You're prepared to invest in paid traffic for at least 100 days.</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <div class="fit-label">✗ This call is NOT for you if:</div>
+        <ul class="fit-list">
+          <li><span class="fit-icon x">✗</span>You're a one‑man show still on the tools all day.</li>
+          <li><span class="fit-icon x">✗</span>You mainly sell low‑ticket repair jobs.</li>
+          <li><span class="fit-icon x">✗</span>You're looking for "set it and forget it" magic instead of a real system.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROOF BAR ── -->
+<section class="proof-section">
+  <div class="section">
+    <p class="section-eyebrow">Verified Results</p>
+    <h2 class="section-headline">What Other Contractors Have Done With This System</h2>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-name">Jason</div>
+        <p class="proof-text">Went from a long‑term ~$100K/month ceiling to a <strong>$500K month</strong> in 90 days.</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">Justin</div>
+        <p class="proof-text">Issued <strong>$1.7M in quotes in a single week</strong> and added <strong>$1.5M in slow‑season revenue.</strong></p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">Eric</div>
+        <p class="proof-text">Scaling toward <strong>$50M/year</strong>, running <strong>65–70 appointments per week</strong> from this system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT HAPPENS NEXT ── -->
+<section class="next-section">
+  <div class="section">
+    <p class="section-eyebrow">The Process</p>
+    <h2 class="section-headline">What Happens After You Book</h2>
+    <div class="next-steps">
+      <div class="next-step">
+        <div class="next-num">1</div>
+        <div class="next-content">
+          <h4>You'll get a calendar invite and confirmation by email/text.</h4>
+          <p>Check your inbox (and spam folder) for your booking confirmation with the call link.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="next-num">2</div>
+        <div class="next-content">
+          <h4>We'll review your application before the call.</h4>
+          <p>If we're clearly not a fit, <em>we'll let you know and cancel</em> so we don't waste your time.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="next-num">3</div>
+        <div class="next-content">
+          <h4>On the call, we'll walk through your numbers and market.</h4>
+          <p>You'll see the <em>math behind your potential 100‑day appointment plan</em> — real numbers, your market, your capacity.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="next-num">4</div>
+        <div class="next-content">
+          <h4>If we both agree it makes sense, we'll talk through next steps.</h4>
+          <p>We can typically get qualified partners <em>live in about 7 days.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="no-show-note">
+      If something comes up, please use the reschedule link in your confirmation instead of no‑showing. These slots are limited and reserved for serious operators.
+    </div>
+  </div>
+</section>
+
+<!-- ── BOTTOM CALENDAR ── -->
+<section class="bottom-cal">
+  <div class="bottom-cal-inner">
+    <h2>Lock In Your Time Now</h2>
+    <p>We only hold a limited number of build‑out spots each month and work with one contractor per major market. If your territory is open, don't leave this page without picking a time.</p>
+
+    <!-- 
+      ══════════════════════════════════════════
+      CALENDAR EMBED — same as above.
+      Replace with Calendly or Cal.com embed.
+      ══════════════════════════════════════════
+    -->
+    <div class="bottom-cal-embed">
+      <div class="bottom-cal-embed-icon">📅</div>
+      <strong style="color:rgba(247,244,239,0.5);">Paste your calendar embed here</strong>
+    </div>
+
+    <p class="scarcity-note">Lock in your time now while this page is open. We only hold a limited number of build‑out spots each month and work with one contractor per major market.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>© 2025 Season Proof Growth. All rights reserved.</div>
+  <div style="margin-top:5px; opacity:0.6;">Results mentioned are from actual clients. Individual results will vary based on market, ad spend, and execution.</div>
+</footer>
+
+</body>
+</html>
