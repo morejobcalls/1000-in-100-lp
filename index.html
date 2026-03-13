@@ -421,39 +421,74 @@
   .how-section .section-headline { color: var(--white); }
   .how-section .section-eyebrow { color: var(--brand); }
 
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: rgba(247,244,239,0.06);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  @media(max-width: 700px) { .steps { grid-template-columns: 1fr; } }
-
-  .step {
-    background: rgba(247,244,239,0.03);
-    padding: 36px 28px;
+  /* ── HOW IT WORKS: clean static numbered steps ── */
+  .how-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 52px;
     position: relative;
   }
-  .step-num {
+
+  .how-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 32px;
+    position: relative;
+  }
+
+  /* Left column: number + connector line */
+  .how-step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .how-step-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 5rem;
     line-height: 1;
-    color: rgba(232,80,10,0.15);
-    margin-bottom: 12px;
+    color: var(--brand);
+    flex-shrink: 0;
   }
-  .step-title {
+
+  .how-step-line {
+    width: 2px;
+    flex: 1;
+    min-height: 40px;
+    background: linear-gradient(to bottom, rgba(232,80,10,0.5) 0%, rgba(232,80,10,0.08) 100%);
+  }
+
+  .how-step:last-child .how-step-line { display: none; }
+
+  /* Right column: content card */
+  .how-step-card {
+    background: rgba(247,244,239,0.04);
+    border: 1px solid rgba(247,244,239,0.07);
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-bottom: 16px;
+  }
+
+  .how-step-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    color: var(--white);
+    font-size: 1.9rem;
     letter-spacing: 0.03em;
+    color: var(--white);
     margin-bottom: 12px;
   }
-  .step-body {
-    font-size: 0.93rem;
-    line-height: 1.65;
-    color: rgba(247,244,239,0.65);
+
+  .how-step-body {
+    font-size: 0.97rem;
+    line-height: 1.75;
+    color: rgba(247,244,239,0.55);
+    max-width: 480px;
+  }
+
+  @media(max-width:700px) {
+    .how-step { grid-template-columns: 56px 1fr; gap: 0 20px; }
+    .how-step-num { font-size: 3.5rem; }
+    .how-step-card { padding: 24px 24px; }
   }
 
   /* ── GUARANTEE ────────────────────────────────────── */
@@ -665,125 +700,23 @@
       </div>
     </div>
 
-    <!-- RIGHT: Form -->
+    <!-- RIGHT: Funnel CTA Card -->
     <div id="apply" class="fade-up-3">
-      <div class="form-card">
-        <h3 class="bebas">Check My Market &amp; See If I Qualify</h3>
-        <p class="form-sub">Fill out the form below. We'll confirm if your territory is open and if you qualify.</p>
-        <form onsubmit="handleSubmit(event)">
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" name="fullname" placeholder="John Smith" required />
-            </div>
-            <div class="form-group">
-              <label>Company Name</label>
-              <input type="text" name="company" placeholder="Acme Decks LLC" required />
-            </div>
-          </div>
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" placeholder="john@company.com" required />
-            </div>
-            <div class="form-group">
-              <label>Mobile Phone</label>
-              <input type="tel" name="phone" placeholder="(555) 000-0000" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Current Annual Revenue</label>
-            <div class="select-wrap">
-              <select name="revenue" required>
-                <option value="" disabled selected>Select a range</option>
-                <option>Under $1M</option>
-                <option>$1M – $3M</option>
-                <option>$3M – $5M</option>
-                <option>$5M – $10M</option>
-                <option>$10M – $25M</option>
-                <option>$25M+</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>Average Job Size</label>
-              <div class="select-wrap">
-                <select name="jobsize" required>
-                  <option value="" disabled selected>Select range</option>
-                  <option>Under $5K</option>
-                  <option>$5K – $15K</option>
-                  <option>$15K – $30K</option>
-                  <option>$30K – $60K</option>
-                  <option>$60K – $100K</option>
-                  <option>$100K+</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Install Crews</label>
-              <div class="select-wrap">
-                <select name="crews" required>
-                  <option value="" disabled selected>Select</option>
-                  <option>1</option>
-                  <option>2–3</option>
-                  <option>4–6</option>
-                  <option>7–10</option>
-                  <option>10+</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>Full-Time Salespeople</label>
-              <div class="select-wrap">
-                <select name="sales" required>
-                  <option value="" disabled selected>Select</option>
-                  <option>0 (owner sells)</option>
-                  <option>1</option>
-                  <option>2–3</option>
-                  <option>4–6</option>
-                  <option>7+</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Monthly Ad Budget</label>
-              <div class="select-wrap">
-                <select name="adbudget" required>
-                  <option value="" disabled selected>Select range</option>
-                  <option>Under $2K</option>
-                  <option>$2K – $5K</option>
-                  <option>$5K – $10K</option>
-                  <option>$10K – $20K</option>
-                  <option>$20K+</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Main Service Area / City &amp; State</label>
-            <input type="text" name="market" placeholder="e.g. Dallas, TX" required />
-          </div>
-          <div class="form-group">
-            <label>Can you handle 10–20+ new appts/week in the next 90–100 days?</label>
-            <div class="select-wrap">
-              <select name="capacity" required>
-                <option value="" disabled selected>Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No / Not sure</option>
-              </select>
-            </div>
-          </div>
-          <button type="submit" class="btn-primary" style="margin-top:6px;">Submit Application</button>
-        </form>
-        <p class="form-after">After you submit, you'll see if your market is open and get a chance to book a short call to review your numbers and see if this partnership makes sense.</p>
+      <div class="form-card" style="text-align:center; padding: 48px 32px;">
+        <div style="font-size:2.8rem; margin-bottom:16px;">📍</div>
+        <h3 class="bebas" style="font-size:2rem; margin-bottom:10px; color:var(--ink);">Check My Market &amp; See If I Qualify</h3>
+        <p style="font-size:0.93rem; color:var(--muted); line-height:1.65; margin-bottom:28px;">Answer 11 quick questions. We'll check if your territory is open and whether you're a fit for our done-for-you system.</p>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px; text-align:left;">
+          <div style="display:flex;gap:10px;align-items:center;font-size:0.88rem;color:var(--muted);"><span style="color:var(--brand);font-weight:700;">✓</span> Takes about 2 minutes</div>
+          <div style="display:flex;gap:10px;align-items:center;font-size:0.88rem;color:var(--muted);"><span style="color:var(--brand);font-weight:700;">✓</span> 100% free, no obligation</div>
+          <div style="display:flex;gap:10px;align-items:center;font-size:0.88rem;color:var(--muted);"><span style="color:var(--brand);font-weight:700;">✓</span> One partner per market</div>
+        </div>
+        <button onclick="openFunnel()" class="btn-primary" style="font-size:1rem; padding:18px 32px; width:100%;">Check My Market &amp; Apply &rarr;</button>
+        <p style="font-size:0.78rem; color:var(--muted); margin-top:12px;">Most finish in under 2 minutes.</p>
       </div>
     </div>
   </div>
 </section>
-
 <!-- ───── CREDIBILITY STRIP ───── -->
 <section class="cred-strip">
   <div class="section">
@@ -794,16 +727,25 @@
         <div class="cred-name">Jason</div>
         <div class="cred-title">Outdoor Living Contractor</div>
         <div class="cred-stat">Broke through a $100K/month ceiling to hit a <strong style="color:var(--brand);">$500K month</strong> in his first 90 days with the system.</div>
+        <div style="margin-top:20px;border-radius:4px;overflow:hidden;position:relative;padding-bottom:56.25%;height:0;">
+          <iframe src="https://www.youtube.com/embed/thmY9E9PYqY" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
       <div class="cred-card">
         <div class="cred-name">Justin</div>
         <div class="cred-title">Deck & Exterior Contractor</div>
         <div class="cred-stat">Issued <strong style="color:var(--brand);">$1.7M in quotes in a single week</strong> during what used to be the "slow season."</div>
+        <div style="margin-top:20px;border-radius:4px;overflow:hidden;position:relative;padding-bottom:56.25%;height:0;">
+          <iframe src="https://www.youtube.com/embed/YJQxX5ZQ3aI" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
       <div class="cred-card">
         <div class="cred-name">Eric</div>
         <div class="cred-title">High-Growth Operator</div>
         <div class="cred-stat">Scaling toward <strong style="color:var(--brand);">$50M/year</strong>, generating 65–70 appointments per week with 1,200+ leads/month.</div>
+        <div style="margin-top:20px;border-radius:4px;overflow:hidden;position:relative;padding-bottom:56.25%;height:0;">
+          <iframe src="https://www.youtube.com/embed/ERQ84Dgz-Ow" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -888,28 +830,49 @@
 </section>
 
 <!-- ───── HOW IT WORKS ───── -->
-<section class="how-section">
+<section class="how-section" id="howSection">
   <div class="section">
     <p class="section-eyebrow">The Process</p>
     <h2 class="section-headline">How The 1,000‑in‑100 Partnership Works</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-title">Apply & Market Check</div>
-        <p class="step-body">Click "Check My Market & Apply," answer a few questions about your volume, crews, and markets. We confirm if your territory is open and if you qualify.</p>
+
+    <div class="how-steps">
+
+      <div class="how-step">
+        <div class="how-step-left">
+          <div class="how-step-num">1</div>
+          <div class="how-step-line"></div>
+        </div>
+        <div class="how-step-card">
+          <div class="how-step-title">Apply &amp; Market Check</div>
+          <p class="how-step-body">Click "Check My Market &amp; Apply," answer a few questions about your volume, crews, and markets. We confirm if your territory is open and if you qualify.</p>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-title">Strategy & Numbers Call</div>
-        <p class="step-body">If you qualify, we walk you through the numbers for your market: realistic appointment volume, budget, and payback window.</p>
+
+      <div class="how-step">
+        <div class="how-step-left">
+          <div class="how-step-num">2</div>
+          <div class="how-step-line"></div>
+        </div>
+        <div class="how-step-card">
+          <div class="how-step-title">Strategy &amp; Numbers Call</div>
+          <p class="how-step-body">If you qualify, we walk you through the numbers for your market: realistic appointment volume, budget, and payback window.</p>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-title">Build, Launch, Scale</div>
-        <p class="step-body">If we both agree it's a fit, we build and launch your funnel in about 7 days, then optimize toward your 100‑day appointment target.</p>
+
+      <div class="how-step">
+        <div class="how-step-left">
+          <div class="how-step-num">3</div>
+          <div class="how-step-line"></div>
+        </div>
+        <div class="how-step-card">
+          <div class="how-step-title">Build, Launch, Scale</div>
+          <p class="how-step-body">If we both agree it's a fit, we build and launch your funnel in about 7 days, then optimize toward your 100‑day appointment target.</p>
+        </div>
       </div>
+
     </div>
-    <div style="text-align:center; margin-top:48px;">
+
+    <div style="text-align:center; margin-top:56px;">
       <a href="#apply" class="btn-primary" style="display:inline-block; width:auto; padding:16px 48px;">Check My Market &amp; Apply</a>
     </div>
   </div>
@@ -974,120 +937,11 @@
 
 <!-- ───── BOTTOM FORM ───── -->
 <section class="bottom-form-section" id="bottom-apply">
-  <div class="bottom-form-inner">
-    <div class="form-card">
-      <h3 class="bebas">Check My Market &amp; See If I Qualify</h3>
-      <p class="form-sub">Fill out the form below. We'll confirm if your territory is open and set up a call to walk through the numbers.</p>
-      <form onsubmit="handleSubmit(event)">
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" name="fullname" placeholder="John Smith" required />
-          </div>
-          <div class="form-group">
-            <label>Company Name</label>
-            <input type="text" name="company" placeholder="Acme Decks LLC" required />
-          </div>
-        </div>
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="john@company.com" required />
-          </div>
-          <div class="form-group">
-            <label>Mobile Phone</label>
-            <input type="tel" name="phone" placeholder="(555) 000-0000" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Current Annual Revenue</label>
-          <div class="select-wrap">
-            <select name="revenue" required>
-              <option value="" disabled selected>Select a range</option>
-              <option>Under $1M</option>
-              <option>$1M – $3M</option>
-              <option>$3M – $5M</option>
-              <option>$5M – $10M</option>
-              <option>$10M – $25M</option>
-              <option>$25M+</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label>Average Job Size</label>
-            <div class="select-wrap">
-              <select name="jobsize" required>
-                <option value="" disabled selected>Select range</option>
-                <option>Under $5K</option>
-                <option>$5K – $15K</option>
-                <option>$15K – $30K</option>
-                <option>$30K – $60K</option>
-                <option>$60K – $100K</option>
-                <option>$100K+</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Install Crews</label>
-            <div class="select-wrap">
-              <select name="crews" required>
-                <option value="" disabled selected>Select</option>
-                <option>1</option>
-                <option>2–3</option>
-                <option>4–6</option>
-                <option>7–10</option>
-                <option>10+</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label>Full-Time Salespeople</label>
-            <div class="select-wrap">
-              <select name="sales" required>
-                <option value="" disabled selected>Select</option>
-                <option>0 (owner sells)</option>
-                <option>1</option>
-                <option>2–3</option>
-                <option>4–6</option>
-                <option>7+</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Monthly Ad Budget</label>
-            <div class="select-wrap">
-              <select name="adbudget" required>
-                <option value="" disabled selected>Select range</option>
-                <option>Under $2K</option>
-                <option>$2K – $5K</option>
-                <option>$5K – $10K</option>
-                <option>$10K – $20K</option>
-                <option>$20K+</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Main Service Area / City &amp; State</label>
-          <input type="text" name="market" placeholder="e.g. Dallas, TX" required />
-        </div>
-        <div class="form-group">
-          <label>Can you handle 10–20+ new appts/week in the next 90–100 days?</label>
-          <div class="select-wrap">
-            <select name="capacity" required>
-              <option value="" disabled selected>Select</option>
-              <option value="yes">Yes</option>
-              <option value="no">No / Not sure</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="btn-primary" style="margin-top:6px;">Submit Application</button>
-      </form>
-      <p class="form-after">After you submit, you'll see if your market is open and get a chance to book a short call to review your numbers and see if this partnership makes sense.</p>
-    </div>
+  <div style="max-width:600px; margin:0 auto; padding:80px 40px; text-align:center;">
+    <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,4vw,3rem); color:var(--white); margin-bottom:12px;">Ready To Check Your Market?</h2>
+    <p style="font-size:0.97rem; color:rgba(247,244,239,0.55); line-height:1.7; margin-bottom:32px;">Takes 2 minutes. We'll tell you if your territory is open and whether you qualify.</p>
+    <button onclick="openFunnel()" class="btn-primary" style="display:inline-block; width:auto; padding:18px 48px; font-size:1rem;">Check My Market &amp; Apply &rarr;</button>
+    <p style="margin-top:14px; font-size:0.8rem; color:rgba(247,244,239,0.3);">One contractor per market. Limited spots.</p>
   </div>
 </section>
 
@@ -1097,31 +951,680 @@
   <div style="margin-top:6px; font-size:0.72rem; opacity:0.6;">Results mentioned are from actual clients. Individual results will vary based on market, ad spend, and execution.</div>
 </footer>
 
-<script>
-function handleSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type="submit"]');
-  btn.textContent = 'Submitting...';
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-  setTimeout(() => {
-    form.innerHTML = `
-      <div style="text-align:center; padding: 40px 20px;">
-        <div style="font-size:3rem; margin-bottom:16px;">✅</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--brand); margin-bottom:12px;">Application Received</div>
-        <p style="font-size:0.97rem; line-height:1.65; color:inherit; opacity:0.75;">We're checking your market now. If your territory is open and you qualify, we'll reach out within 1 business day to schedule a strategy call.</p>
-      </div>
-    `;
-  }, 1200);
-}
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+<!-- ═══════════════════════════════════════════════
+     QUIZ FUNNEL OVERLAY
+     One screen per question. Auto-advances on pick.
+     Clean index: screens[0]=intro, [1-11]=questions,
+     [12]=processing, [13]=result.
+════════════════════════════════════════════════ -->
+<div id="qz">
+  <div id="qz-bar">
+    <button id="qz-back" class="qz-icon-btn" onclick="Quiz.back()">&#8592;</button>
+    <div id="qz-brand">SEASON<em>PROOF</em> GROWTH</div>
+    <button class="qz-icon-btn" onclick="Quiz.close()">&#x2715;</button>
+  </div>
+  <div id="qz-prog-wrap"><div id="qz-prog"></div></div>
+  <div id="qz-vp"></div>
+</div>
+
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── OVERLAY ─────────────────────────────────── */
+#qz {
+  display: none;
+  position: fixed; inset: 0; z-index: 9999;
+  flex-direction: column;
+  font-family: 'DM Sans', sans-serif;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+#qz.on { display: flex; }
+
+/* ─── TOP BAR ─────────────────────────────────── */
+#qz-bar {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px; flex-shrink: 0; z-index: 2;
+}
+.qz-icon-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: none; background: rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.55); font-size: 18px;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background 0.15s; flex-shrink: 0;
+}
+.qz-icon-btn:hover { background: rgba(255,255,255,0.16); }
+#qz-back { visibility: hidden; }
+#qz-back.vis { visibility: visible; }
+#qz-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.3);
+}
+#qz-brand em { color: #e8500a; font-style: normal; }
+
+/* ─── PROGRESS ────────────────────────────────── */
+#qz-prog-wrap { height: 3px; background: rgba(255,255,255,0.08); flex-shrink: 0; }
+#qz-prog { height: 100%; background: #e8500a; width: 0; transition: width 0.4s ease; border-radius: 0 2px 2px 0; }
+
+/* ─── VIEWPORT ────────────────────────────────── */
+#qz-vp { flex: 1; position: relative; overflow: hidden; }
+
+/* ─── SLIDE BASE ──────────────────────────────── */
+.qz-sl {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px 24px 60px;
+  overflow-y: auto;
+  /* off-screen right by default */
+  transform: translateX(100%);
+  transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  pointer-events: none;
+}
+.qz-sl.cur  { transform: translateX(0);    pointer-events: all; }
+.qz-sl.prev { transform: translateX(-100%); pointer-events: none; }
+
+/* ─── INTRO ───────────────────────────────────── */
+.sl-intro { background: linear-gradient(150deg, #1a1a1a 0%, #0d0d0d 100%); text-align: center; }
+.intro-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #e8500a; border: 1px solid rgba(232,80,10,0.35);
+  background: rgba(232,80,10,0.1);
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 22px;
+}
+.intro-h {
+  font-size: clamp(28px, 6vw, 48px); font-weight: 800;
+  line-height: 1.08; letter-spacing: -0.03em;
+  color: #fff; margin-bottom: 14px;
+}
+.intro-h em { color: #e8500a; font-style: normal; }
+.intro-p { font-size: 15px; color: rgba(255,255,255,0.42); line-height: 1.7; max-width: 320px; margin: 0 auto 26px; }
+.intro-trust { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+.intro-trust span { font-size: 12px; color: rgba(255,255,255,0.3); }
+.intro-trust span::before { content: '✓ '; color: #e8500a; font-weight: 700; }
+.intro-cta {
+  padding: 18px 48px; background: #e8500a; color: #fff;
+  font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+  border: none; border-radius: 14px; cursor: pointer; min-width: 260px;
+  box-shadow: 0 8px 36px rgba(232,80,10,0.38);
+  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
+}
+.intro-cta:hover  { background: #c43e06; transform: translateY(-2px); box-shadow: 0 12px 44px rgba(232,80,10,0.48); }
+.intro-cta:active { transform: scale(0.97); }
+.intro-note { margin-top: 14px; font-size: 11px; color: rgba(255,255,255,0.2); }
+
+/* ─── TEXT QUESTION ───────────────────────────── */
+.sl-text { background: #fff; align-items: flex-start; }
+.q-inner { width: 100%; max-width: 520px; }
+.q-label { font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #e8500a; margin-bottom: 10px; }
+.q-title { font-size: clamp(22px, 4vw, 34px); font-weight: 800; letter-spacing: -0.028em; color: #111; line-height: 1.15; margin-bottom: 8px; }
+.q-hint  { font-size: 13px; color: #aaa; line-height: 1.5; margin-bottom: 28px; }
+.q-input {
+  width: 100%; border: none; border-bottom: 2.5px solid #e5e5e5;
+  padding: 12px 0; font-family: inherit;
+  font-size: 22px; font-weight: 600; color: #111;
+  background: transparent; outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none; appearance: none;
+}
+.q-input:focus { border-color: #e8500a; }
+.q-input::placeholder { color: #d0d0d0; font-weight: 400; font-size: 18px; }
+.q-err { font-size: 12px; color: #d94040; margin-top: 10px; min-height: 16px; }
+.q-cont {
+  margin-top: 28px; padding: 16px 40px;
+  background: #e8500a; color: #fff;
+  font-family: inherit; font-size: 15px; font-weight: 700;
+  border: none; border-radius: 12px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.q-cont:hover  { background: #c43e06; }
+.q-cont:active { transform: scale(0.97); }
+
+/* ─── OPTION QUESTION ─────────────────────────── */
+.sl-opts { background: #fff; align-items: flex-start; }
+.opts-list { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 520px; margin-top: 0; }
+.opt-btn {
+  display: flex; align-items: center; gap: 14px;
+  padding: 15px 18px; border: 2px solid #ede9e2;
+  border-radius: 14px; background: #fff;
+  cursor: pointer; text-align: left;
+  font-family: inherit; width: 100%;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+.opt-btn:hover  { border-color: #e8500a; background: rgba(232,80,10,0.03); box-shadow: 0 4px 18px rgba(232,80,10,0.1); }
+.opt-btn:active { transform: scale(0.985); }
+.opt-btn.picked { border-color: #e8500a; background: rgba(232,80,10,0.07); }
+.opt-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: #f5f2ee; display: flex; align-items: center;
+  justify-content: center; font-size: 20px; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.opt-btn.picked .opt-icon { background: rgba(232,80,10,0.15); }
+.opt-label { font-size: 15px; font-weight: 600; color: #111; line-height: 1.3; }
+.opt-sub   { font-size: 12px; color: #aaa; margin-top: 2px; }
+
+/* ─── PROCESSING ──────────────────────────────── */
+.sl-proc { background: #fff; }
+.proc-ring-wrap { position: relative; width: 72px; height: 72px; margin: 0 auto 22px; }
+.proc-ring {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 3px solid #f0ede8; border-top-color: #e8500a;
+  animation: spin 0.85s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.proc-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.proc-h { font-size: 22px; font-weight: 800; letter-spacing: -0.025em; color: #111; margin-bottom: 6px; text-align: center; }
+.proc-p { font-size: 13px; color: #aaa; line-height: 1.6; text-align: center; margin-bottom: 28px; }
+.proc-checks { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 290px; }
+.chk {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 12px;
+  background: #f8f6f3; transition: background 0.5s;
+}
+.chk.done { background: rgba(29,158,117,0.08); }
+.chk-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #e5e2de; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; transition: background 0.5s;
+}
+.chk.done .chk-icon { background: rgba(29,158,117,0.18); }
+.chk-lbl { font-size: 13px; font-weight: 600; color: #bbb; flex: 1; transition: color 0.5s; }
+.chk.done .chk-lbl { color: #111; }
+.chk-tick { font-size: 13px; font-weight: 700; color: #ccc; transition: color 0.5s; }
+.chk.done .chk-tick { color: #1d9e75; }
+
+/* ─── RESULT ──────────────────────────────────── */
+.sl-result { background: linear-gradient(150deg, #1a1a1a 0%, #0d0d0d 100%); text-align: center; }
+.avail-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(29,158,117,0.15); border: 1px solid rgba(29,158,117,0.3);
+  color: #5dcaa5; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 100px; margin-bottom: 20px;
+}
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #5dcaa5;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.45;transform:scale(.7)} }
+.res-h1 { font-size: clamp(26px,5vw,40px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #fff; margin-bottom: 12px; }
+.res-h1 em { color: #e8500a; font-style: normal; }
+.area-chip {
+  display: inline-block; background: rgba(232,80,10,0.15);
+  border: 1px solid rgba(232,80,10,0.28); color: #e8500a;
+  font-size: 14px; font-weight: 700; padding: 8px 18px;
+  border-radius: 100px; margin-bottom: 10px;
+  max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.res-h2 { font-size: clamp(20px,4vw,28px); font-weight: 800; letter-spacing: -0.025em; color: #fff; margin-bottom: 14px; }
+.res-h2 em { color: #e8500a; font-style: normal; }
+.res-body { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 300px; margin: 0 auto 22px; }
+.res-perks { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; max-width: 300px; text-align: left; }
+.res-perk { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.65); }
+.res-perk::before { content: '✓'; color: #e8500a; font-weight: 700; flex-shrink: 0; }
+.book-btn {
+  padding: 18px 44px; background: #e8500a; color: #fff;
+  font-family: inherit; font-size: 16px; font-weight: 700;
+  border: none; border-radius: 14px; cursor: pointer; min-width: 280px;
+  box-shadow: 0 8px 32px rgba(232,80,10,0.35);
+  transition: background 0.15s, transform 0.1s;
+}
+.book-btn:hover  { background: #c23e06; transform: translateY(-1px); }
+.book-btn:active { transform: scale(0.97); }
+.res-fine { margin-top: 12px; font-size: 11px; color: rgba(255,255,255,0.2); }
+</style>
+
+<script>
+
+var Quiz = (function () {
+
+  /* ── SCREENS ──────────────────────────────────────────────────────────
+     Each screen is an object. We build real DOM once, then just
+     slide between them. No re-rendering, no ID collisions.
+
+     cur = index into SCREENS array.
+     SCREENS[0]  = intro
+     SCREENS[1-11] = questions
+     SCREENS[12] = processing
+     SCREENS[13] = result
+  ─────────────────────────────────────────────────────────────────────── */
+
+  var REDIRECT = '/booking.html';
+
+  var QUESTIONS = [
+    { type:'text', label:'1 of 11', title:"What's your full name?",             hint:"Let's start with the basics.",
+      id:'qf_name',    ph:'John Smith',          ac:'name',         it:'text'  },
+    { type:'text', label:'2 of 11', title:"What's your company name?",          hint:"Your business name as customers know it.",
+      id:'qf_company', ph:'Acme Decks & Patios', ac:'organization', it:'text'  },
+    { type:'text', label:'3 of 11', title:"What's your email address?",         hint:"We'll send your market report here.",
+      id:'qf_email',   ph:'you@company.com',     ac:'email',        it:'email' },
+    { type:'text', label:'4 of 11', title:"What's your mobile number?",         hint:"For a quick call if you qualify.",
+      id:'qf_phone',   ph:'(555) 867-5309',      ac:'tel',          it:'tel'   },
+    { type:'opts', label:'5 of 11', title:"What's your annual revenue?",        hint:"Approximate is fine — helps us gauge fit.",
+      key:'revenue', opts:[
+        {e:'🌱',v:'Under $250K'},
+        {e:'📈',v:'$250K – $500K'},
+        {e:'🏗️',v:'$500K – $1M'},
+        {e:'💼',v:'$1M – $2M'},
+        {e:'🚀',v:'$2M – $5M'},
+        {e:'🏆',v:'$5M+'}
+      ]
+    },
+    { type:'opts', label:'6 of 11', title:"What's your average job size?",      hint:"Typical contract value per project.",
+      key:'jobsize', opts:[
+        {e:'🔧',v:'Under $5K'},
+        {e:'🪚',v:'$5K – $10K'},
+        {e:'🏡',v:'$10K – $20K'},
+        {e:'🏗️',v:'$20K – $40K'},
+        {e:'💎',v:'$40K – $75K'},
+        {e:'🏆',v:'$75K+'}
+      ]
+    },
+    { type:'opts', label:'7 of 11', title:"How many install crews do you have?", hint:"Active crews in the field right now.",
+      key:'crews', opts:[
+        {e:'👷',v:'1 crew'},
+        {e:'👷',v:'2 crews'},
+        {e:'👷',v:'3 crews'},
+        {e:'🏢',v:'4–5 crews'},
+        {e:'🏗️',v:'6–10 crews'},
+        {e:'🚀',v:'10+ crews'}
+      ]
+    },
+    { type:'opts', label:'8 of 11', title:"How many full-time salespeople do you have?", hint:"Include yourself if you run sales.",
+      key:'sales', opts:[
+        {e:'🙋',v:'Just me',        s:'Owner-led sales'},
+        {e:'🤝',v:'1 salesperson'},
+        {e:'👥',v:'2 salespeople'},
+        {e:'💼',v:'3–5 salespeople'},
+        {e:'🏆',v:'5+ salespeople'}
+      ]
+    },
+    { type:'text', label:'9 of 11', title:"What's your main service area?",     hint:'City & state — e.g. "Austin, TX"',
+      id:'qf_area',    ph:'Austin, TX',          ac:'off',          it:'text'  },
+    { type:'opts', label:'10 of 11', title:"Can you handle 10–20+ new appointments per week for 90–100 days?", hint:"Be honest — this shapes the system we build.",
+      key:'capacity', opts:[
+        {e:'✅',v:'Yes, absolutely', s:"We're ready to scale"},
+        {e:'🔧',v:'Not yet',         s:'Still building capacity'}
+      ]
+    },
+    { type:'opts', label:'11 of 11', title:"What's your current monthly ad budget?", hint:"Or what you're prepared to invest in paid traffic.",
+      key:'budget', opts:[
+        {e:'🌱',v:'Under $1,000/mo'},
+        {e:'📊',v:'$1,000 – $2,500/mo'},
+        {e:'💰',v:'$2,500 – $5,000/mo'},
+        {e:'📈',v:'$5,000 – $10,000/mo'},
+        {e:'🚀',v:'$10,000 – $20,000/mo'},
+        {e:'🏆',v:'$20,000+/mo'}
+      ]
+    }
+  ];
+
+  /* ── state ── */
+  var cur      = 0;       // index into screens[]
+  var answers  = {};
+  var busy     = false;
+  var screens  = [];      // DOM elements, built once
+
+  /* ── DOM refs ── */
+  var overlay, vp, prog, backBtn;
+
+  /* ─────────────────────────────────────────────
+     BUILD
+  ───────────────────────────────────────────── */
+  function build() {
+    vp.innerHTML = '';
+    screens = [];
+
+    screens.push(buildIntro());
+    QUESTIONS.forEach(function (q, i) {
+      screens.push(q.type === 'text' ? buildText(q, i) : buildOpts(q, i));
+    });
+    screens.push(buildProc());
+    screens.push(buildResult());
+
+    screens.forEach(function (s) { vp.appendChild(s); });
+  }
+
+  function div(cls, html) {
+    var d = document.createElement('div');
+    d.className = cls;
+    if (html !== undefined) d.innerHTML = html;
+    return d;
+  }
+
+  /* intro (screens[0]) */
+  function buildIntro() {
+    var s = div('qz-sl sl-intro');
+    s.innerHTML =
+      '<div class="intro-tag">Season Proof Growth — Exclusive Territories</div>' +
+      '<h2 class="intro-h">Check If Your Market<br><em>Is Still Open</em></h2>' +
+      '<p class="intro-p">11 quick questions. We\'ll confirm your territory availability and whether you\'re a fit for our done-for-you appointment system.</p>' +
+      '<div class="intro-trust"><span>2 minutes</span><span>100% free</span><span>No spam</span></div>' +
+      '<button class="intro-cta">Check My Market →</button>' +
+      '<p class="intro-note">One contractor per territory · Limited spots</p>';
+    s.querySelector('.intro-cta').addEventListener('click', function () { goTo(1); });
+    return s;
+  }
+
+  /* text question (screens[1-11], qi = 0-based position in QUESTIONS) */
+  function buildText(q, qi) {
+    var s = div('qz-sl sl-text');
+    var inner = div('q-inner');
+    inner.innerHTML =
+      '<div class="q-label">Question ' + q.label + '</div>' +
+      '<div class="q-title">' + q.title + '</div>' +
+      '<div class="q-hint">'  + q.hint  + '</div>' +
+      '<input class="q-input" type="' + q.it + '" placeholder="' + q.ph + '" autocomplete="' + q.ac + '">' +
+      '<div class="q-err"></div>' +
+      '<button class="q-cont">Continue →</button>';
+    s.appendChild(inner);
+
+    var inp  = inner.querySelector('.q-input');
+    var err  = inner.querySelector('.q-err');
+    var cont = inner.querySelector('.q-cont');
+
+    function attempt() {
+      var v = inp.value.trim();
+      var msg = validate(q, v);
+      err.textContent = msg;
+      if (!msg) {
+        answers[q.id] = v;
+        goTo(qi + 2);  /* qi+2 because screens[0]=intro, so question qi is at screens[qi+1] */
+      }
+    }
+
+    cont.addEventListener('click', attempt);
+    inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') attempt(); });
+    inp.addEventListener('input',   function ()  { err.textContent = ''; });
+
+    return s;
+  }
+
+  /* options question (screens[1-11], qi = 0-based position in QUESTIONS) */
+  function buildOpts(q, qi) {
+    var s = div('qz-sl sl-opts');
+    var inner = div('q-inner');
+    var optsHtml = q.opts.map(function (o) {
+      return '<button class="opt-btn">' +
+        '<div class="opt-icon">' + o.e + '</div>' +
+        '<div><div class="opt-label">' + o.v + '</div>' +
+        (o.s ? '<div class="opt-sub">' + o.s + '</div>' : '') +
+        '</div></button>';
+    }).join('');
+    inner.innerHTML =
+      '<div class="q-label">Question ' + q.label + '</div>' +
+      '<div class="q-title">' + q.title + '</div>' +
+      '<div class="q-hint">'  + q.hint  + '</div>' +
+      '<div class="opts-list">' + optsHtml + '</div>';
+    s.appendChild(inner);
+
+    inner.querySelectorAll('.opt-btn').forEach(function (btn, oi) {
+      btn.addEventListener('click', function () {
+        /* guard: only respond if this slide is current */
+        if (cur !== qi + 1) return;
+        answers[q.key] = q.opts[oi].v;
+        inner.querySelectorAll('.opt-btn').forEach(function (b) { b.classList.remove('picked'); });
+        btn.classList.add('picked');
+        setTimeout(function () { goTo(qi + 2); }, 320);
+      });
+    });
+
+    return s;
+  }
+
+  /* processing (screens[12]) */
+  function buildProc() {
+    var s = div('qz-sl sl-proc');
+    s.innerHTML =
+      '<div class="proc-ring-wrap"><div class="proc-ring"></div><div class="proc-icon">📍</div></div>' +
+      '<div class="proc-h">Checking your market…</div>' +
+      '<div class="proc-p">Analyzing availability and fit in your area.<br>Just a moment.</div>' +
+      '<div class="proc-checks">' +
+        '<div class="chk" id="chk1"><div class="chk-icon">🔍</div><div class="chk-lbl">Searching your territory</div><div class="chk-tick">···</div></div>' +
+        '<div class="chk" id="chk2"><div class="chk-icon">👥</div><div class="chk-lbl">Checking existing clients</div><div class="chk-tick">···</div></div>' +
+        '<div class="chk" id="chk3"><div class="chk-icon">📊</div><div class="chk-lbl">Analyzing market demand</div><div class="chk-tick">···</div></div>' +
+        '<div class="chk" id="chk4"><div class="chk-icon">✅</div><div class="chk-lbl">Confirming your eligibility</div><div class="chk-tick">···</div></div>' +
+      '</div>';
+    return s;
+  }
+
+  /* result (screens[13]) */
+  function buildResult() {
+    var s = div('qz-sl sl-result');
+    s.innerHTML =
+      '<div class="avail-badge"><span class="live-dot"></span>Market Available</div>' +
+      '<div class="res-h1">Great news, <em id="res-name">friend</em>.</div>' +
+      '<div class="area-chip" id="res-area">Your area</div>' +
+      '<div class="res-h2">is still <em>open</em>.</div>' +
+      '<div class="res-body">Your market hasn\'t been claimed yet. We only work with one contractor per territory — and yours is available right now.</div>' +
+      '<div class="res-perks">' +
+        '<div class="res-perk">Done-for-you Meta & Google ads</div>' +
+        '<div class="res-perk">Exclusive leads — no shared territory</div>' +
+        '<div class="res-perk">Full CRM & automation included</div>' +
+      '</div>' +
+      '<button class="book-btn" id="res-book">Book My Strategy Call →</button>' +
+      '<p class="res-fine">Free 30-min call · No obligation · Spots fill fast</p>';
+    s.querySelector('#res-book').addEventListener('click', function () {
+      window.location.href = REDIRECT;
+    });
+    return s;
+  }
+
+  /* ─────────────────────────────────────────────
+     NAVIGATION  (the only tricky part)
+     screens[] index = cur
+     goTo(n): slides FROM screens[cur] TO screens[n]
+  ───────────────────────────────────────────── */
+  function goTo(n) {
+    if (busy) return;
+    if (n === cur) return;
+    busy = true;
+
+    var from = screens[cur];
+    var to   = screens[n];
+
+    /* exit current off to the left */
+    from.classList.remove('cur');
+    from.classList.add('prev');
+
+    /* bring next in from the right (it's already translateX(100%) by default) */
+    to.classList.add('cur');
+
+    cur = n;
+    updateChrome();
+    if (n === 12) runProcessing();
+
+    /* autofocus text inputs */
+    if (n >= 1 && n <= 11) {
+      var q = QUESTIONS[n - 1];
+      if (q.type === 'text') {
+        setTimeout(function () {
+          var inp = screens[n].querySelector('.q-input');
+          if (inp) inp.focus();
+        }, 80);
+      }
+    }
+
+    setTimeout(function () {
+      /* clean up: remove 'prev' so slide resets off-screen-right for if we ever come back forward */
+      from.classList.remove('prev');
+      busy = false;
+    }, 450);
+  }
+
+  function goBack() {
+    if (busy || cur <= 0) return;
+    busy = true;
+
+    var from = screens[cur];
+    var to   = screens[cur - 1];
+
+    /* send current off to the right */
+    from.classList.remove('cur');
+    /* no transition needed here — just instantly hide right */
+    from.style.transition = 'none';
+    from.style.transform  = 'translateX(100%)';
+
+    /* bring previous in from the left */
+    to.classList.remove('prev');
+    to.style.transition = 'none';
+    to.style.transform  = 'translateX(-100%)';
+    to.classList.add('cur');
+
+    /* trigger reflow then animate */
+    to.getBoundingClientRect();
+    to.style.transition = 'transform 0.42s cubic-bezier(0.4,0,0.2,1)';
+    to.style.transform  = 'translateX(0)';
+
+    cur--;
+    updateChrome();
+
+    setTimeout(function () {
+      from.style.transition = '';
+      from.style.transform  = '';
+      to.style.transition   = '';
+      to.style.transform    = '';
+      busy = false;
+    }, 460);
+  }
+
+  /* ─────────────────────────────────────────────
+     CHROME (progress bar + back button)
+  ───────────────────────────────────────────── */
+  function updateChrome() {
+    var pct = 0;
+    if (cur >= 1 && cur <= 11) pct = Math.round((cur / 11) * 100);
+    else if (cur >= 12) pct = 100;
+    prog.style.width = pct + '%';
+
+    if (cur >= 1 && cur <= 11) backBtn.classList.add('vis');
+    else backBtn.classList.remove('vis');
+  }
+
+  /* ─────────────────────────────────────────────
+     PROCESSING sequence
+  ───────────────────────────────────────────── */
+  function runProcessing() {
+    /* reset ticks first */
+    [1,2,3,4].forEach(function (i) {
+      var row = document.getElementById('chk' + i);
+      if (row) { row.classList.remove('done'); row.querySelector('.chk-tick').textContent = '···'; }
+    });
+
+    [[1,900],[2,1800],[3,2700],[4,3500]].forEach(function (pair) {
+      setTimeout(function () {
+        var row = document.getElementById('chk' + pair[0]);
+        if (row) { row.classList.add('done'); row.querySelector('.chk-tick').textContent = '✓'; }
+      }, pair[1]);
+    });
+
+    setTimeout(function () {
+      /* populate result with their answers */
+      var nameVal = answers['qf_name'] || '';
+      var areaVal = answers['qf_area'] || '';
+      var rn = document.getElementById('res-name');
+      var ra = document.getElementById('res-area');
+      if (rn) rn.textContent = nameVal.split(' ')[0] || 'friend';
+      if (ra) ra.textContent = areaVal || 'your area';
+      goTo(13);
+    }, 4800);
+  }
+
+  /* ─────────────────────────────────────────────
+     VALIDATION
+  ───────────────────────────────────────────── */
+  function validate(q, v) {
+    if (q.id === 'qf_name'    && v.length < 2)                             return 'Please enter your full name.';
+    if (q.id === 'qf_company' && !v)                                        return 'Please enter your company name.';
+    if (q.id === 'qf_email'   && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))  return 'Please enter a valid email.';
+    if (q.id === 'qf_phone'   && v.replace(/\D/g,'').length < 10)          return 'Please enter a valid 10-digit number.';
+    if (q.id === 'qf_area'    && v.length < 3)                             return 'Please enter your city & state.';
+    return '';
+  }
+
+  /* ─────────────────────────────────────────────
+     PUBLIC API
+  ───────────────────────────────────────────── */
+  function open() {
+    /* reset everything */
+    answers = {};
+    busy    = false;
+    cur     = 0;
+
+    screens.forEach(function (s) {
+      s.classList.remove('cur', 'prev');
+      s.style.transform  = '';
+      s.style.transition = '';
+    });
+    /* clear text fields */
+    QUESTIONS.forEach(function (q) {
+      if (q.type === 'text') {
+        var inp = document.getElementById(q.id);
+        /* field lives inside the slide element now, not by top-level ID */
+      }
+    });
+    /* clear inputs inside slides */
+    screens.forEach(function (s) {
+      s.querySelectorAll('.q-input').forEach(function (inp) { inp.value = ''; });
+      s.querySelectorAll('.q-err').forEach(function (e)   { e.textContent = ''; });
+      s.querySelectorAll('.opt-btn').forEach(function (b) { b.classList.remove('picked'); });
+    });
+
+    screens[0].classList.add('cur');
+    updateChrome();
+
+    overlay.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    overlay.classList.remove('on');
+    document.body.style.overflow = '';
+  }
+
+  function back() { goBack(); }
+
+  /* ─────────────────────────────────────────────
+     INIT
+  ───────────────────────────────────────────── */
+  function init() {
+    overlay = document.getElementById('qz');
+    vp      = document.getElementById('qz-vp');
+    prog    = document.getElementById('qz-prog');
+    backBtn = document.getElementById('qz-back');
+
+    build();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  return { open: open, close: close, back: back };
+
+})();
+
+// Alias so existing onclick="openFunnel()" buttons still work
+function openFunnel() { Quiz.open(); }
+
+// Hook all #apply anchor links
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href="#apply"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      Quiz.open();
+    });
   });
 });
 </script>
